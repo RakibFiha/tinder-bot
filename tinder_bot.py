@@ -3,6 +3,7 @@ from time import sleep
 
 from secrets import username, password
 
+
 class TinderBot():
     def __init__(self):
         self.driver = webdriver.Chrome()
@@ -10,7 +11,7 @@ class TinderBot():
     def login(self):
         self.driver.get('https://tinder.com')
 
-        sleep(2)
+        sleep(5)
 
         fb_btn = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/div[2]/button')
         fb_btn.click()
@@ -30,9 +31,11 @@ class TinderBot():
 
         self.driver.switch_to_window(base_window)
 
+        sleep(5)
         popup_1 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         popup_1.click()
 
+        sleep(5)
         popup_2 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         popup_2.click()
 
@@ -56,12 +59,14 @@ class TinderBot():
                     self.close_match()
 
     def close_popup(self):
-        popup_3 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
+        popup_3 = bot.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
         popup_3.click()
 
     def close_match(self):
-        match_popup = self.driver.find_element_by_xpath('//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[3]/a')
+        match_popup = bot.driver.find_element_by_xpath('//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[3]/a')
         match_popup.click()
+
 
 bot = TinderBot()
 bot.login()
+bot.auto_swipe()
